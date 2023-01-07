@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="body">
+  <div class="page">
+
+    <header class="header">
+      <img class="header__logo" src="./images/logo/Vectorlogowhit.svg" alt="белый логотип место ">
+    </header>
+    <main class="content">
+      <section class="profile" aria-label="карточки с городами">
+        <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар Жак-Ив Кусто">
+        <div class="profile__info">
+          <p class="profile__title">Жак-Ив Кусто </p>
+          <button class="profile__edit-button"></button>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>   
+        <button class="profile__add-button">
+          <img class="profile__add-button-img" src="./images/logo/Vector+.svg" alt="логотип кнопки добавить">
+        </button>     
+      </section>
+      <ul class="cards">
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото из карачаевска">
+          <div class="cards__footer">
+            <p class="cards__text">Карачаевск</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1404681-unsplash.png" alt="фото из Гора Эльбрус">
+          <div class="cards__footer">
+            <p class="cards__text">Гора Эльбрус</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1556355-unsplash.png" alt="фото из Домбай">
+          <div class="cards__footer">
+            <p class="cards__text">Домбай</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1404681-unsplash.png" alt="фото из Домбай">
+          <div class="cards__footer">
+            <p class="cards__text">Гора Эльбрус</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1556355-unsplash.png" alt="фото из Гора Эльбрус">
+          <div class="cards__footer">
+            <p class="cards__text">Домбай</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+        <li class="cards__item">
+          <img class="cards__img" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото из карачаевска">
+          <div class="cards__footer">
+            <p class="cards__text">Карачаево-Черкесская республика</p>
+            <img class="cards__like" src="./images/logo/Vectorserce.svg" alt="лайк">
+          </div>
+        </li>
+      </ul>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="#" class="popup__form">
+          <input type="text" class="popup__name-form" placeholder="Жак-Ив Кусто">
+          <input type="text" class="popup__profession" placeholder="Исследователь океана">
+          <button type="submit" class="popup__button">Сохранить</button>
+          <button type="reset" class="popup__close"></button>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

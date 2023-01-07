@@ -1,0 +1,13 @@
+.profile__info {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-left: 29px;
+}
+
+@media (min-width: 1024px) {
+  .profile__info {
+    margin: 0;
+    padding-right: 120px;
+  }
+}

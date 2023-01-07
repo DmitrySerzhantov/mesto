@@ -1,0 +1,11 @@
+.profile__avatar {
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .profile__avatar {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

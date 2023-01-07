@@ -1,0 +1,11 @@
+.profile__add-button-img {
+  width: 6%;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .profile__add-button-img {
+    width: 20%;
+  }
+}
