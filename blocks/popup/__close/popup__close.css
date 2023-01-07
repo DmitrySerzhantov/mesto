@@ -9,6 +9,10 @@
   border: none;
 }
 
+.popup__close:hover {
+  opacity: 0.6;
+}
+
 @media (max-width: 600px) {
   .popup__close {
     width: 20px;

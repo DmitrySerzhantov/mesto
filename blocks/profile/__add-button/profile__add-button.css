@@ -6,6 +6,9 @@
   min-height: 50px;
   margin-top: 33px;
 }
+.profile__add-button:hover {
+  opacity: 0.6;
+}
 
 @media (min-width: 1024px) {
   .profile__add-button {
