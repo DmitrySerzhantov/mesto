@@ -12,8 +12,7 @@
 
 @media (min-width: 1024px) {
   .profile {
-    display: grid;
-    grid-template-columns: 30px auto 150px;
+    display: flex;
     max-width: 100%;
     align-items: center;
   }

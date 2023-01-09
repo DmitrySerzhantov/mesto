@@ -1,4 +1,5 @@
 .cards__like {
+  padding: 0;
   background-image: url(../../../images/logo/Vectorserce.svg);
   background-color: rgba(0, 0, 0, 0);
   border: none;

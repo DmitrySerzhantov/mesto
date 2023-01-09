@@ -6,12 +6,15 @@
   grid-column-start: span 2;
   margin-top: 6px;
   margin-right: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .profile__subtitle {
     font-size: 18px;
     line-height: 22px;
-    padding-right: 105px;
+    margin-right: auto;
   }
 }
