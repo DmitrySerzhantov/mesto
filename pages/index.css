@@ -29,4 +29,4 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_open/popup_open.css);
-@import url(../blocks/input/__form/_text_style/input__form_text_style.css);
+@import url(../blocks/input/_text_style/input__form_text_style.css);

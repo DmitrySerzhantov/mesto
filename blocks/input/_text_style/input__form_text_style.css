@@ -1,4 +1,4 @@
-.input__form_text_style {
+.input_text_style {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
@@ -6,6 +6,6 @@
   padding-bottom: 10px;
 }
 
-.input__form_text_style::placeholder {
+.input_text_style::placeholder {
   color: #000;
 }
