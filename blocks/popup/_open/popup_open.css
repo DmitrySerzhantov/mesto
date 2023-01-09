@@ -1,3 +1,8 @@
 .popup_open {
   display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  position: fixed;
+  min-height: 100vh;
+  min-width: 100vw;
 }

@@ -1,8 +1,16 @@
+.cards__like {
+  background-image: url(../../../images/logo/Vectorserce.svg);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: 22px;
+  height: 19px;
+}
+
 .cards__like:hover {
   opacity: 0.5;
 }
 
 .cards__like:active {
   opacity: 1;
-  content: url("../../../images/logo/Unionblack.svg");
+  background-image: url("../../../images/logo/Unionblack.svg");
 }
