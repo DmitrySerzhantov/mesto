@@ -3,6 +3,9 @@
   display: grid;
   grid-template-columns: auto auto;
   margin-left: 29px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media (min-width: 1024px) {
