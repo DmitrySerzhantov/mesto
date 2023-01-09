@@ -4,18 +4,12 @@
   height: 100%;
   width: 100%;
   position: fixed;
+  top: 0;
   left: 50%;
-  top: 123px;
   transform: translate(-50%, 0%);
   justify-content: center;
 }
 
 .popup_open {
   display: flex;
-}
-
-@media (min-width: 600px) {
-  .popup {
-    top: 191px;
-  }
 }

@@ -4,11 +4,13 @@
   height: 330px;
   border-radius: 10px;
   position: relative;
+  top: 192px;
 }
 
 @media (max-width: 600px) {
   .popup__container {
     width: 282px;
     height: 322px;
+    top: 123px;
   }
 }
