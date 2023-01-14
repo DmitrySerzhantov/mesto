@@ -1,8 +1,35 @@
 const popupElement = document.querySelector(".popup");
 const editButtonProfile = document.querySelector(".profile__edit-button");
 const closeButtonProfile = document.querySelector(".popup__close");
-
-const open_popup = function () {
+const addCardsButton = document.querySelector(".profile__add-button");
+const popupAddCards = document.querySelector(".popup-add-cards");
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+const openPopup = function () {
   popupElement.classList.add("popup_open");
 };
 
@@ -10,14 +37,25 @@ const closePopup = function () {
   popupElement.classList.remove("popup_open");
 };
 
-editButtonProfile.addEventListener("click", open_popup);
+const openPopupAddButton = function () {
+  popupAddCards.classList.add("popup_open");
+};
+
+const closePopupAddCards = function () {
+  popupAddCards.classList.remove("popup_open");
+};
+
+
+editButtonProfile.addEventListener("click", openPopup);
 closeButtonProfile.addEventListener("click", closePopup);
+addCardsButton.addEventListener("click", openPopupAddButton);
+closeButtonProfile.addEventListener("click", closePopupAddCards);
 
 // Находим форму в DOM
-let formElement = document.querySelector(".popup__form"); // Воспользуйтесь методом querySelector()
+let formElement = document.querySelector(".popup__form"); 
 // Находим поля формы в DOM
-let nameInput = document.querySelector(".popup__name-form"); // Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector(".popup__profession"); // Воспользуйтесь инструментом .querySelector()
+let nameInput = document.querySelector(".popup__name-form");
+let jobInput = document.querySelector(".popup__profession"); 
 let popupButton = document.querySelector(".popup__button");
 let valnameInput = nameInput.value;
 // Обработчик «отправки» формы, хотя пока
