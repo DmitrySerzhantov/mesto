@@ -1,10 +1,12 @@
-.popup__name-form {
+.popup__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
   line-height: 17px;
   padding-bottom: 10px;
+  margin-bottom: 27px;
 }
-.popup__name-form::placeholder {
+
+.popup__input::placeholder {
   color: #000;
 }
