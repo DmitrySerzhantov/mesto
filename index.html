@@ -32,7 +32,7 @@
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup-edit-add">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" action="#" method="get" name="formPopup">
@@ -43,14 +43,14 @@
         </form>
       </div>
     </div>
-     <div class="popup">
+     <div class="popup popup-cards-add">
       <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
+        <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" action="#" method="get" name="formPopup">
-          <input type="text" class="popup__input popup__input_text_name" value="" name="nameProfil">
-          <input type="text" class="popup__input popup__input_text_job" value="" name="jobProfil">
-          <button type="submit" class="popup__button" value="submit" name="submit">Сохранить</button>
-          <button type="button" class="popup__close" value="close" name="close"></button>
+          <input type="text" class="popup__input popup__input_text_name" value="" name="nameCards" placeholder="Название">
+          <input type="text" class="popup__input popup__input_text_job" value="" name="linkImg" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__button" value="submit" name="submit">Создать</button>
+          <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>
       </div>
     </div>
