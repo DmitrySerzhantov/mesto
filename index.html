@@ -26,48 +26,6 @@
         <button type="button" class="profile__add-button" aria-label="Кнопка добавления контента"></button>
       </section>
       <section class="cards" aria-label="контентная часть страницы">
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото из карачаевска">
-          <div class="cards__footer">
-            <h2 class="cards__text">Карачаевск</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1404681-unsplash.png" alt="фото из Гора Эльбрус">
-          <div class="cards__footer">
-            <h2 class="cards__text">Гора Эльбрус</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1556355-unsplash.png" alt="фото из Домбай">
-          <div class="cards__footer">
-            <h2 class="cards__text">Домбай</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1404681-unsplash.png" alt="фото из Домбай">
-          <div class="cards__footer">
-            <h2 class="cards__text">Гора Эльбрус</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1556355-unsplash.png" alt="фото из Гора Эльбрус">
-          <div class="cards__footer">
-            <h2 class="cards__text">Домбай</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
-        <div class="cards__item">
-          <img class="cards__img" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото из карачаевска">
-          <div class="cards__footer">
-            <h2 class="cards__text">Карачаево-Черкесская республика</h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
-          </div>
-        </div>
       </section>
 
     </main>
@@ -75,6 +33,17 @@
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" action="#" method="get" name="formPopup">
+          <input type="text" class="popup__input popup__input_text_name" value="" name="nameProfil">
+          <input type="text" class="popup__input popup__input_text_job" value="" name="jobProfil">
+          <button type="submit" class="popup__button" value="submit" name="submit">Сохранить</button>
+          <button type="button" class="popup__close" value="close" name="close"></button>
+        </form>
+      </div>
+    </div>
+     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" action="#" method="get" name="formPopup">
