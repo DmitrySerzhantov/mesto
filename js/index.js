@@ -63,6 +63,20 @@ function rebdorCard({name, link}) {
 
 
   cards.append(addElement);
+
+
+  const cardsLike = addElement.querySelector('.cards__like');
+  const likeColorBlack = () => {
+    if (cardsLike.classList.toggle("cards__like_color_black") == true){
+      cardsLike.classList.add("cards__like_color_black")
+    } else {
+      cardsLike.classList.remove("cards__like_color_black")
+    }
+
+  };
+
+  cardsLike.addEventListener("click", likeColorBlack);
+
 }
 rendor();
 function handCardSubmit(evt) {
@@ -73,10 +87,20 @@ function handCardSubmit(evt) {
   cards.prepend(addNewElement);
   closePopupAddCards();
 
+  const cardsLikeNew = addNewElement.querySelector('.cards__like');
+  const likeColorBlack = () => {
+    if (cardsLikeNew.classList.toggle("cards__like_color_black") == true){
+      cardsLikeNew.classList.add("cards__like_color_black")
+    } else {
+      cardsLikeNew.classList.remove("cards__like_color_black")
+    }
+  };
+
+  cardsLikeNew.addEventListener("click", likeColorBlack);
+
+
 }
 submitCard.addEventListener("submit", handCardSubmit);
-
-
 
 
 
