@@ -26,8 +26,18 @@
         <button type="button" class="profile__add-button" aria-label="Кнопка добавления контента"></button>
       </section>
       <section class="cards" aria-label="контентная часть страницы">
-      </section>
 
+
+      </section>
+      <template class="element-card">
+        <article class="cards__item">
+          <img class="cards__img" src='' alt="фото из карачаевска">
+          <div class="cards__footer">
+            <h2 class="cards__text"></h2>
+            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
+          </div>
+        </article>
+      </template>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
@@ -43,12 +53,14 @@
         </form>
       </div>
     </div>
-     <div class="popup popup-cards-add">
+    <div class="popup popup-cards-add">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" action="#" method="get" name="formPopup">
-          <input type="text" class="popup__input popup__input_text_name-card" value="" name="nameCards" placeholder="Название">
-          <input type="text" class="popup__input popup__input_img_link" value="" name="linkImg" placeholder="Ссылка на картинку">
+        <form class="popup__form submit-card" action="#" method="get" name="formPopup">
+          <input type="text" class="popup__input popup__input_text_name-card" value="" name="nameCards"
+            placeholder="Название">
+          <input type="text" class="popup__input popup__input_img_link" value="" name="linkImg"
+            placeholder="Ссылка на картинку">
           <button type="submit" class="popup__button " value="submit" name="submit">Создать</button>
           <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>

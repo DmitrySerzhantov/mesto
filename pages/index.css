@@ -17,6 +17,7 @@
 @import url(../blocks/cards/__footer/cards__footer.css);
 @import url(../blocks/cards/__text/cards__text.css);
 @import url(../blocks/cards/__like/cards__like.css);
+@import url(../blocks/cards/__like/_color_black/cards__like_color_black.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 @import url(../blocks/popup/popup.css);
