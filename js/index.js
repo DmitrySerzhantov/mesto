@@ -52,7 +52,7 @@ const createCard = (name, link) => {
 
   const like = () => { //создал функцию с инструкциеей при условии которой класс с лайком black добавляется либо удаляетсяю.
 
-    if(cardsLike.classList.contains("cards__like_color_black") !== true ){
+    if(cardsLike.classList.contains("cards__like_color_black") !== true ){//проверка есть класс или нет
 
       cardsLike.classList.add("cards__like_color_black");
     }else{
@@ -61,9 +61,14 @@ const createCard = (name, link) => {
 
     }
   };
-
-
   cardsLike.addEventListener("click", like);// событие нажатия на лайк
+
+  const cardsTrash = task.querySelector('.cards__trash'); //нашел кнопку удаления карточки
+  cardsTrash.addEventListener("click", () => {//слушатель кнопки удаления при клике на которую удаляется карточка.
+  task.remove();
+  });
+
+
   return task;
 
 };
