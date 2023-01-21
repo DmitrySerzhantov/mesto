@@ -11,6 +11,7 @@ const profileAddButton = document.querySelector(".profile__add-button");
 const closeButtonAddCards = document.querySelector(".popup__close-addcards");
 
 
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -41,11 +42,28 @@ const initialCards = [
 const cards = document.querySelector('.cards'); //нашел контейнер кда буду вставлять html разметку то есть template,
 const template = document.querySelector('#element-card'); // нашел template в html,
 
+
 const createCard = (name, link) => {
   const task = template.content.querySelector('.cards__item').cloneNode(true); //Клонирую html элемент li
   task.querySelector('.cards__img').src = link; //присваивает значение элемента link для src.
   task.querySelector('.cards__text').textContent = name; //присваивает значение элемента name для текста тега  h2.
+ //Добавил возможность ставить лайки
+  const cardsLike = task.querySelector('.cards__like'); //нашел сам лайк
 
+  const like = () => { //создал функцию с инструкциеей при условии которой класс с лайком black добавляется либо удаляетсяю.
+
+    if(cardsLike.classList.contains("cards__like_color_black") !== true ){
+
+      cardsLike.classList.add("cards__like_color_black");
+    }else{
+
+      cardsLike.classList.remove("cards__like_color_black");
+
+    }
+  };
+
+
+  cardsLike.addEventListener("click", like);// событие нажатия на лайк
   return task;
 
 };
@@ -86,6 +104,8 @@ submitCard.addEventListener("submit", formAddCard);//событе при наж�
 
 
 
+
+
 const openPopup =  () => {
   popupElement.classList.add("popup_open");
   nameInput.value = profileTitle.textContent;
@@ -117,5 +137,8 @@ closeButtonProfile.addEventListener("click", closePopup);
 formElement.addEventListener("submit", handleFormSubmit);
 profileAddButton.addEventListener("click", openPopupAddCards);
 closeButtonAddCards.addEventListener("click", closePopupAddCards);
+
+
+
 
 
