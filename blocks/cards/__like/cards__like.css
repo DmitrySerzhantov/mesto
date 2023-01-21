@@ -12,7 +12,3 @@
   opacity: 0.5;
 }
 
-.cards__like:active {
-  opacity: 1;
-  background-image: url("../../../images/logo/Unionblack.svg");
-}
