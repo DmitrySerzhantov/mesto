@@ -67,9 +67,27 @@ const createCard = (name, link) => {
   cardsTrash.addEventListener("click", () => {//слушатель кнопки удаления при клике на которую удаляется карточка.
   task.remove();
   });
+  const popupImg = document.querySelector('.popup-img');//попап с изображением
 
+  const popupNameImg = document.querySelector('.popup-img__name-img'); //имя изображение в попапе
+  const popupImgImage = document.querySelector('.popup-img__image'); // изображение в попапе
 
-  return task;
+  const cardsImg = task.querySelector('.cards__img');// нашел изображение из карточки что-бы повесить на нее слушателя.
+  const popupImgCloseBtn = document.querySelector('.popup-img__close-btn'); //нашел кнопку закрытия попапа
+
+ const openImg = () => {// функция открытие попапа
+  popupImg.classList.add('popup-img_open'); //добавляет класс
+  popupImgImage.src = link;
+  popupNameImg.textContent = name;
+ };
+
+ const closeImg = () => {
+  popupImg.classList.remove('popup-img_open');//удоляет класс
+ }
+
+ cardsImg.addEventListener("click", openImg );
+ popupImgCloseBtn.addEventListener("click", closeImg );
+ return task;
 
 };
 
