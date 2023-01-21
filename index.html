@@ -25,18 +25,19 @@
         </div>
         <button type="button" class="profile__add-button" aria-label="Кнопка добавления контента"></button>
       </section>
-      <section class="cards" aria-label="контентная часть страницы">
+      <ul class="cards" aria-label="контентная часть страницы">
 
 
-      </section>
-      <template class="element-card">
-        <article class="cards__item">
-          <img class="cards__img" src='' alt="фото из карачаевска">
+      </ul>
+      <template id="element-card">
+        <li class="cards__item">
+          <img class="cards__img" src='' alt="Изображение карточки">
+          <button class="cards__trash" type="button" aria-label="удалить карточку"></button>
           <div class="cards__footer">
             <h2 class="cards__text"></h2>
             <button class="cards__like " type="button" aria-label="лайк для карточки"></button>
           </div>
-        </article>
+        </li>
       </template>
     </main>
     <footer class="footer">

@@ -9,98 +9,63 @@ let jobInput = document.querySelector(".popup__input_text_job");
 const popupCardsAdd = document.querySelector(".popup-cards-add");
 const profileAddButton = document.querySelector(".profile__add-button");
 const closeButtonAddCards = document.querySelector(".popup__close-addcards");
-const popupInputTextNameCard = document.querySelector('.popup__input_text_name-card');
-const popupInputImgLink = document.querySelector('.popup__input_img_link');
-const submitCard = document.querySelector('.submit-card');
 
 
-  const initialCards = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-  ];
-
-  const cards = document.querySelector('.cards');
-  const template = document.querySelector('.element-card').content;
 
 
-const createsArrey = initialCards.map((item) => {
-  return {
-    name: item.name,
-    link: item.link
-  };
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+// добавление карточек при загрузке
+const cards = document.querySelector('.cards'); //нашел контейнер кда буду вставлять html разметку то есть template,
+const template = document.querySelector('#element-card'); // нашел template в html,
+
+const createCard = (name, link) => {
+  const task = template.content.querySelector('.cards__item').cloneNode(true); //Клонирую html элемент li
+  task.querySelector('.cards__img').src = link; //присваивает значение элемента link для src.
+  task.querySelector('.cards__text').textContent = name; //присваивает значение элемента name для текста тега  h2.
+
+  return task;
+
+};
+
+/*Функция добавления карточек в начало и передача значений из объекта при помщи
+фигурных скобок {} так как йтем возвращает объкт с элементами name и link*/
+const renderCard = ({name, link}) => {
+  cards.prepend(createCard(name, link));
+};
+
+//перребор массива методом forEach и добавление каждего из  элементов маccива в атрибут item
+initialCards.forEach((item) => {
+ renderCard(item);
 });
 
-function rendor ()  {
-  createsArrey.forEach(rebdorCard);
-}
-
-function rebdorCard({name, link}) {
-  const addElement = template.querySelector('.cards__item').cloneNode(true);
-  addElement.querySelector('.cards__text').textContent = name;
-  addElement.querySelector('.cards__img').src = link;
 
 
-  cards.append(addElement);
 
-
-  const cardsLike = addElement.querySelector('.cards__like');
-  const likeColorBlack = () => {
-    if (cardsLike.classList.toggle("cards__like_color_black") == true){
-      cardsLike.classList.add("cards__like_color_black")
-    } else {
-      cardsLike.classList.remove("cards__like_color_black")
-    }
-
-  };
-
-  cardsLike.addEventListener("click", likeColorBlack);
-
-}
-rendor();
-function handCardSubmit(evt) {
-  evt.preventDefault();
-  const addNewElement = template.querySelector('.cards__item').cloneNode(true);
-  addNewElement .querySelector('.cards__text').textContent = popupInputTextNameCard.value;
-  addNewElement .querySelector('.cards__img').src = popupInputImgLink.value;
-  cards.prepend(addNewElement);
-  closePopupAddCards();
-
-  const cardsLikeNew = addNewElement.querySelector('.cards__like');
-  const likeColorBlack = () => {
-    if (cardsLikeNew.classList.toggle("cards__like_color_black") == true){
-      cardsLikeNew.classList.add("cards__like_color_black")
-    } else {
-      cardsLikeNew.classList.remove("cards__like_color_black")
-    }
-  };
-
-  cardsLikeNew.addEventListener("click", likeColorBlack);
-
-
-}
-submitCard.addEventListener("submit", handCardSubmit);
 
 
 
