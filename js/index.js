@@ -11,8 +11,6 @@ const profileAddButton = document.querySelector(".profile__add-button");
 const closeButtonAddCards = document.querySelector(".popup__close-addcards");
 
 
-
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -54,7 +52,7 @@ const createCard = (name, link) => {
 
 /*Функция добавления карточек в начало и передача значений из объекта при помщи
 фигурных скобок {} так как йтем возвращает объкт с элементами name и link*/
-const renderCard = ({name, link}) => {
+const renderCard = ({name, link}) => {//функция получает элимент item.
   cards.prepend(createCard(name, link));
 };
 
@@ -63,11 +61,28 @@ initialCards.forEach((item) => {
  renderCard(item);
 });
 
+/*добавление функции которая будет добавлять новую
+карточку на страницу на основе данных из фрмы*/
+const inputTextNameCard = document.querySelector('.popup__input_text_name-card');//нашел поле формы для имени карточки что-бы получить значение
+const inputImgLink = document.querySelector('.popup__input_img_link');//нашел поле формы для ссылки карточки что-бы получить значение
+const submitCard = document.querySelector('.submit-card'); //нашел саму форму которая отправляет значение полей для новой карточкмю
 
+const formAddCard = (evt) => {
+  evt.preventDefault();
 
+const velueNewCard = {// присвоил новые значения из формы для новой карточкм
+  name: inputTextNameCard.value,
+  link: inputImgLink.value
 
+}
 
+renderCard(velueNewCard);//вызвал функцию добавления карточки со значениями из формы
+closePopupAddCards();//закрытие формы после нажания на кнопку
+inputImgLink.value = ''; //очистил форму после сохранения
+inputTextNameCard.value = '';
+};
 
+submitCard.addEventListener("submit", formAddCard);//событе при нажатии на кнопку отправляется форма для создание новой карточки
 
 
 
