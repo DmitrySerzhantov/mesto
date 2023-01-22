@@ -13,8 +13,7 @@ const popupImg = document.querySelector(".popup-img"); //попап с изоб�
 const popupImgImage = popupImg.querySelector(".popup-img__image"); // изображение в попапе
 const popupNameImg = popupImg.querySelector(".popup-img__name-img"); //имя изображение в попапе
 const popupImgCloseBtn = document.querySelector(".popup-img__close-btn"); //нашел кнопку закрытия попапа
-
-// добавление карточек при загрузке
+const popup = document.querySelector(".popup");
 const cards = document.querySelector(".cards"); //нашел контейнер кда буду вставлять html разметку то есть template,
 const template = document.querySelector("#element-card"); // нашел template в html,
 
@@ -24,7 +23,6 @@ const createCard = (name, link) => {
   task.querySelector(".cards__text").textContent = name; //присваивает значение элемента name для текста тега  h2.
   task.querySelector(".cards__img").alt = name;
   //Добавил возможность ставить лайки
-
   const cardsLike = task.querySelector(".cards__like"); //нашел сам лайк
   const like = () => {
     cardsLike.classList.toggle("cards__like_color_black"); //Функция добавления и удаления лайка через classList.toggle.
@@ -40,22 +38,18 @@ const createCard = (name, link) => {
   const cardsImg = task.querySelector(".cards__img"); // нашел изображение из карточки что-бы повесить на нее слушателя.
 
   const openImg = () => {
-    // функция открытие попапа
-    popupImg.classList.add("popup-img_open"); //добавляет класс
     popupImgImage.src = link;
     popupNameImg.textContent = name;
     popupImgImage.alt = name;
   };
 
-  cardsImg.addEventListener("click", openImg);
+  cardsImg.addEventListener("click", () => {
+    openImg();
+    openPopup(popupImg);
+  });
 
   return task;
 };
-
-const closeImg = () => {
-  popupImg.classList.remove("popup-img_open"); //удаляет класс
-};
-popupImgCloseBtn.addEventListener("click", closeImg);
 
 /*Функция добавления карточек в начало и передача значений из объекта при помщи
 фигурных скобок {} так как йтем возвращает объкт с элементами name и link*/
@@ -89,40 +83,27 @@ const formAddCard = (evt) => {
   closePopupAddCards(); //закрытие формы после нажания на кнопку
   inputImgLink.value = ""; //очистил форму после сохранения
   inputTextNameCard.value = "";
-
-
-};
-
-submitCard.addEventListener("submit", formAddCard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
-
-const openPopup = () => {
-  popupElement.classList.add("popup_open");
-  //nameInput.value = profileTitle.textContent;
-  //jobInput.value = profileSubtitle.textContent;
-
-};
-
-const closePopup = () => {
-  popupElement.classList.remove("popup_open");
 };
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
   closePopup();
 }
-const openPopupAddCards = () => {
-  popupCardsAdd.classList.add("popup_open");
+
+const openPopup = (popup) => {
+  popup.classList.add("popup_open");
 };
 
-const closePopupAddCards = () => {
-  popupCardsAdd.classList.remove("popup_open");
+const closePopup = (popup) => {
+  popup.classList.remove("popup_open");
 };
 
-profileEditButton.addEventListener("click", openPopup);
-closeButtonProfile.addEventListener("click", closePopup);
-formElement.addEventListener("submit", handleFormSubmit);
-profileAddButton.addEventListener("click", openPopupAddCards);
-closeButtonAddCards.addEventListener("click", closePopupAddCards);
+profileEditButton.addEventListener("click", () => openPopup(popupElement));
+profileAddButton.addEventListener("click", () => openPopup(popupCardsAdd));
+closeButtonAddCards.addEventListener("click", () => closePopup(popupCardsAdd));
+closeButtonProfile.addEventListener("click", () => closePopup(popupElement));
+popupElement.addEventListener("submit", handleFormSubmit);
+popupImgCloseBtn.addEventListener("click", () => closePopup(popupImg));
+submitCard.addEventListener("submit", formAddCard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
