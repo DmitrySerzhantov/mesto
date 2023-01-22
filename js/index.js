@@ -1,77 +1,74 @@
-const popupElement = document.querySelector(".popup-edit-add");
+const popupProfileEditing = document.querySelector(".popup-edit-add");
 const profileEditButton = document.querySelector(".profile__edit-button");
-const closeButtonProfile = document.querySelector(".popup__close");
+const popupCloseButton = document.querySelector(".popup__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
-const formElement = document.querySelector(".popup__form");
-const nameInput = document.querySelector(".popup__input_text_name");
-const jobInput = document.querySelector(".popup__input_text_job");
-const popupCardsAdd = document.querySelector(".popup-cards-add");
-const profileAddButton = document.querySelector(".profile__add-button");
+const profileNameInputFieldPopup = document.querySelector(".popup__input_text_name");
+const fieldEnteringTypeActivityPopup = document.querySelector(".popup__input_text_job");
+const popupAddingCards = document.querySelector(".popup-cards-add");
+const buttonOpeningPopupEditingCards = document.querySelector(".profile__add-button");
 const closeButtonAddCards = document.querySelector(".popup__close-addcards");
-const popupImg = document.querySelector(".popup-img"); //попап с изображением
-const popupImgImage = popupImg.querySelector(".popup-img__image"); // изображение в попапе
-const popupNameImg = popupImg.querySelector(".popup-img__name-img"); //имя изображение в попапе
+const popupWithEnlargedImage = document.querySelector(".popup-img"); //попап с изображением
+const linkFromImagePopup = popupWithEnlargedImage.querySelector(".popup-img__image"); // изображение в попапе
+const popupNameImg = popupWithEnlargedImage.querySelector(".popup-img__name-img"); //имя изображение в попапе
 const popupImgCloseBtn = document.querySelector(".popup-img__close-btn"); //нашел кнопку закрытия попапа
-const popup = document.querySelector(".popup");
-const cards = document.querySelector(".cards"); //нашел контейнер кда буду вставлять html разметку то есть template,
+const cardContainer = document.querySelector(".cards"); //нашел контейнер кда буду вставлять html разметку то есть template,
 const template = document.querySelector("#element-card"); // нашел template в html,
+const inputTextNameCard = document.querySelector(".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
+const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
 
 const createCard = (name, link) => {
-  const task = template.content.querySelector(".cards__item").cloneNode(true); //Клонирую html элемент li
-  task.querySelector(".cards__img").src = link; //присваивает значение элемента link для src.
-  task.querySelector(".cards__text").textContent = name; //присваивает значение элемента name для текста тега  h2.
-  task.querySelector(".cards__img").alt = name;
+  const copyElementTemplate = template.content
+    .querySelector(".cards__item")
+    .cloneNode(true); //Клонирую html элемент li
+  copyElementTemplate.querySelector(".cards__img").src = link; //присваивает значение элемента link для src.
+  copyElementTemplate.querySelector(".cards__text").textContent = name; //присваивает значение элемента name для текста тега  h2.
+  copyElementTemplate.querySelector(".cards__img").alt = name;
   //Добавил возможность ставить лайки
-  const cardsLike = task.querySelector(".cards__like"); //нашел сам лайк
-  const like = () => {
+  const cardsLike = copyElementTemplate.querySelector(".cards__like"); //нашел сам лайк
+  const setLikeCard = () => {
     cardsLike.classList.toggle("cards__like_color_black"); //Функция добавления и удаления лайка через classList.toggle.
   };
-  cardsLike.addEventListener("click", like);
+  cardsLike.addEventListener("click", setLikeCard);
 
-  const cardsTrash = task.querySelector(".cards__trash"); //нашел кнопку удаления карточки
+  const cardsTrash = copyElementTemplate.querySelector(".cards__trash"); //нашел кнопку удаления карточки
   cardsTrash.addEventListener("click", () => {
     //слушатель кнопки удаления при клике на которую удаляется карточка.
-    task.remove();
+    copyElementTemplate.remove();
   });
 
-  const cardsImg = task.querySelector(".cards__img"); // нашел изображение из карточки что-бы повесить на нее слушателя.
+  const cardImg = copyElementTemplate.querySelector(".cards__img"); // нашел изображение из карточки что-бы повесить на нее слушателя.
 
-  const openImg = () => {
-    popupImgImage.src = link;
+  const passesValueimageNewCard = () => {
+    linkFromImagePopup.src = link;
     popupNameImg.textContent = name;
-    popupImgImage.alt = name;
+    linkFromImagePopup.alt = name;
   };
 
-  cardsImg.addEventListener("click", () => {
-    openImg();
-    openPopup(popupImg);
+  cardImg.addEventListener("click", () => {
+    passesValueimageNewCard();
+    openPopup(popupWithEnlargedImage);
   });
 
-  return task;
+  return copyElementTemplate;
 };
 
 /*Функция добавления карточек в начало и передача значений из объекта при помщи
 фигурных скобок {} так как йтем возвращает объкт с элементами name и link*/
-const renderCard = ({ name, link }) => {
+const loadsCardsWhenLoading = ({ name, link }) => {
   //функция получает элимент item.
-  cards.prepend(createCard(name, link));
+  cardContainer.prepend(createCard(name, link));
 };
 
 //перребор массива методом forEach и добавление каждего из  элементов маccива в атрибут item
 initialCards.forEach((item) => {
-  renderCard(item);
+  loadsCardsWhenLoading(item);
 });
 
 /*добавление функции которая будет добавлять новую
 карточку на страницу на основе данных из фрмы*/
-const inputTextNameCard = document.querySelector(
-  ".popup__input_text_name-card"
-); //нашел поле формы для имени карточки что-бы получить значение
-const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
-const submitCard = document.querySelector(".submit-card"); //нашел саму форму которая отправляет значение полей для новой карточкмю
 
-const formAddCard = (evt) => {
+const addsNewСard = (evt) => {
   evt.preventDefault();
   const velueNewCard = {
     // присвоил новые значения из формы для новой карточкм
@@ -79,17 +76,17 @@ const formAddCard = (evt) => {
     link: inputImgLink.value,
   };
 
-  renderCard(velueNewCard); //вызвал функцию добавления карточки со значениями из формы
-  closePopup(popupCardsAdd); //закрытие формы после нажания на кнопку
+  loadsCardsWhenLoading(velueNewCard); //вызвал функцию добавления карточки со значениями из формы
+  closePopup(popupAddingCards); //закрытие формы после нажания на кнопку
   inputImgLink.value = ""; //очистил форму после сохранения
   inputTextNameCard.value = "";
 };
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  closePopup(popupElement);
+  profileTitle.textContent = profileNameInputFieldPopup.value;
+  profileSubtitle.textContent = fieldEnteringTypeActivityPopup.value;
+  closePopup(popupProfileEditing);
 }
 
 const openPopup = (popup) => {
@@ -100,10 +97,10 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_open");
 };
 
-profileEditButton.addEventListener("click", () => openPopup(popupElement));
-profileAddButton.addEventListener("click", () => openPopup(popupCardsAdd));
-closeButtonAddCards.addEventListener("click", () => closePopup(popupCardsAdd));
-closeButtonProfile.addEventListener("click", () => closePopup(popupElement));
-popupElement.addEventListener("submit", handleFormSubmit);
-popupImgCloseBtn.addEventListener("click", () => closePopup(popupImg));
-popupCardsAdd.addEventListener("submit", formAddCard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
+profileEditButton.addEventListener("click", () => openPopup(popupProfileEditing));
+buttonOpeningPopupEditingCards.addEventListener("click", () => openPopup(popupAddingCards));
+closeButtonAddCards.addEventListener("click", () => closePopup(popupAddingCards));
+popupCloseButton.addEventListener("click", () => closePopup(popupProfileEditing));
+popupProfileEditing.addEventListener("submit", handleFormSubmit);
+popupImgCloseBtn.addEventListener("click", () => closePopup(popupWithEnlargedImage));
+popupAddingCards.addEventListener("submit", addsNewСard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
