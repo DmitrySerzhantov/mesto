@@ -80,7 +80,7 @@ const formAddCard = (evt) => {
   };
 
   renderCard(velueNewCard); //вызвал функцию добавления карточки со значениями из формы
-  closePopupAddCards(); //закрытие формы после нажания на кнопку
+  closePopup(popupCardsAdd); //закрытие формы после нажания на кнопку
   inputImgLink.value = ""; //очистил форму после сохранения
   inputTextNameCard.value = "";
 };
@@ -89,7 +89,7 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  closePopup();
+  closePopup(popupElement);
 }
 
 const openPopup = (popup) => {
@@ -106,4 +106,4 @@ closeButtonAddCards.addEventListener("click", () => closePopup(popupCardsAdd));
 closeButtonProfile.addEventListener("click", () => closePopup(popupElement));
 popupElement.addEventListener("submit", handleFormSubmit);
 popupImgCloseBtn.addEventListener("click", () => closePopup(popupImg));
-submitCard.addEventListener("submit", formAddCard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
+popupCardsAdd.addEventListener("submit", formAddCard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
