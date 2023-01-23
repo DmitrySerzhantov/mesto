@@ -16,6 +16,7 @@ const cardContainer = document.querySelector(".cards"); //нашел конте�
 const template = document.querySelector("#element-card"); // нашел template в html,
 const inputTextNameCard = document.querySelector(".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
 const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
+const formCard = document.querySelector('.submit-card');
 
 const createCard = (name, link) => {
   const copyElementTemplate = template.content
@@ -39,14 +40,14 @@ const createCard = (name, link) => {
 
   const cardImg = copyElementTemplate.querySelector(".cards__img"); // нашел изображение из карточки что-бы повесить на нее слушателя.
 
-  const passesValueimageNewCard = () => {
+  const fillInImageData = () => {
     linkFromImagePopup.src = link;
     popupNameImg.textContent = name;
     linkFromImagePopup.alt = name;
   };
 
   cardImg.addEventListener("click", () => {
-    passesValueimageNewCard();
+    fillInImageData();
     openPopup(popupWithEnlargedImage);
   });
 
@@ -55,34 +56,33 @@ const createCard = (name, link) => {
 
 /*Функция добавления карточек в начало и передача значений из объекта при помщи
 фигурных скобок {} так как йтем возвращает объкт с элементами name и link*/
-const loadsCardsWhenLoading = ({ name, link }) => {
+const addCard = ({ name, link }) => {
   //функция получает элимент item.
   cardContainer.prepend(createCard(name, link));
 };
 
 //перребор массива методом forEach и добавление каждего из  элементов маccива в атрибут item
 initialCards.forEach((item) => {
-  loadsCardsWhenLoading(item);
+  addCard(item);
 });
 
 /*добавление функции которая будет добавлять новую
 карточку на страницу на основе данных из фрмы*/
 
-const addsNewСard = (evt) => {
+const submitAddCardForm = (evt) => {
   evt.preventDefault();
-  const velueNewCard = {
+  const cardData = {
     // присвоил новые значения из формы для новой карточкм
     name: inputTextNameCard.value,
     link: inputImgLink.value,
   };
 
-  loadsCardsWhenLoading(velueNewCard); //вызвал функцию добавления карточки со значениями из формы
+  addCard(cardData); //вызвал функцию добавления карточки со значениями из формы
   closePopup(popupAddingCards); //закрытие формы после нажания на кнопку
-  inputImgLink.value = ""; //очистил форму после сохранения
-  inputTextNameCard.value = "";
+  formCard.reset();
 };
 
-function handleFormSubmit(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInputFieldPopup.value;
   profileSubtitle.textContent = fieldEnteringTypeActivityPopup.value;
@@ -101,6 +101,6 @@ profileEditButton.addEventListener("click", () => openPopup(popupProfileEditing)
 buttonOpeningPopupEditingCards.addEventListener("click", () => openPopup(popupAddingCards));
 closeButtonAddCards.addEventListener("click", () => closePopup(popupAddingCards));
 popupCloseButton.addEventListener("click", () => closePopup(popupProfileEditing));
-popupProfileEditing.addEventListener("submit", handleFormSubmit);
+popupProfileEditing.addEventListener("submit", submitEditProfileForm);
 popupImgCloseBtn.addEventListener("click", () => closePopup(popupWithEnlargedImage));
-popupAddingCards.addEventListener("submit", addsNewСard); //событе при нажатии на кнопку отправляется форма для создание новой карточки
+popupAddingCards.addEventListener("submit", submitAddCardForm); //событе при нажатии на кнопку отправляется форма для создание новой карточки
