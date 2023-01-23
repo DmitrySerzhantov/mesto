@@ -97,9 +97,13 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_open");
 };
 
-profileEditButton.addEventListener("click", () => openPopup(popupProfileEditing));
+profileEditButton.addEventListener("click", () => {
+  openPopup(popupProfileEditing);
+  profileNameInputFieldPopup.value = profileTitle.textContent;
+  fieldEnteringTypeActivityPopup.value = profileSubtitle.textContent;
+});
 buttonOpeningPopupEditingCards.addEventListener("click", () => openPopup(popupAddingCards));
-closeButtonAddCards.addEventListener("click", () => closePopup(popupAddingCards));
+closeButtonAddCards.addEventListener("click", () =>  closePopup(popupAddingCards));
 popupCloseButton.addEventListener("click", () => closePopup(popupProfileEditing));
 popupProfileEditing.addEventListener("submit", submitEditProfileForm);
 popupImgCloseBtn.addEventListener("click", () => closePopup(popupWithEnlargedImage));
