@@ -5,16 +5,21 @@ const formValidationConfig = {
   buttonSelektor: ".popup__button",
   buttonDisabledClass: "popup__button_style_disabled",
 };
-
+const formCardSelector = document.querySelector(".submit-card");
 function enableValidation(config) {
-  const form = document.querySelector(config.formSelector);
+  const formlist = document.querySelectorAll(config.formSelector);
+  toggleButton(formCardSelector, config);
+  formlist.forEach((form) => {
+    enableFormValidation(form, config);
+  });
+}
 
+function enableFormValidation(form, config) {
   form.addEventListener("input", () => {
     toggleButton(form, config);
   });
 
   addInputLusteners(form, config);
-  toggleButton(form, config);
 }
 
 function handleFormInput(event, config) {
