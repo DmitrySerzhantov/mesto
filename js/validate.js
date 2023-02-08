@@ -39,7 +39,6 @@ function handleFormInput(event, config) {
 function toggleButton(form, config) {
   const buttunSubmit = form.querySelector(config.buttonSelektor);
   const isFormValid = form.checkValidity();
-
   buttunSubmit.disabled = !isFormValid;
   buttunSubmit.classList.toggle("popup__button_style_disabled", !isFormValid);
 }
