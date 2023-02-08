@@ -3,23 +3,31 @@ const formValidationConfig = {
   inputSelector: ".popup__input",
   errorClass: "popup__input_type_error",
   buttonSelektor: ".popup__button",
-  buttonDisabledClass: "popup__button_style_disabled",
+  disabledClass: "popup__button_style_disabled",
 };
-const formCardSelector = document.querySelector(".submit-card");
+
+function disableSubmit(event) {
+  event.preventDefault();
+}
+
 function enableValidation(config) {
   const formlist = document.querySelectorAll(config.formSelector);
-  toggleButton(formCardSelector, config);
+
   formlist.forEach((form) => {
     enableFormValidation(form, config);
+    toggleButton(form, config);
+    formsValidity(form, config);
   });
 }
 
 function enableFormValidation(form, config) {
+  form.addEventListener("submit", disableSubmit);
   form.addEventListener("input", () => {
     toggleButton(form, config);
   });
 
   addInputLusteners(form, config);
+  toggleButton(form, config);
 }
 
 function handleFormInput(event, config) {
@@ -40,7 +48,7 @@ function toggleButton(form, config) {
   const buttunSubmit = form.querySelector(config.buttonSelektor);
   const isFormValid = form.checkValidity();
   buttunSubmit.disabled = !isFormValid;
-  buttunSubmit.classList.toggle("popup__button_style_disabled", !isFormValid);
+  buttunSubmit.classList.toggle(config.disabledClass, !isFormValid);
 }
 
 function addInputLusteners(form, config) {
