@@ -17,6 +17,7 @@ const template = document.querySelector("#element-card"); // нашел template
 const inputTextNameCard = document.querySelector(".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
 const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
 const formCard = document.querySelector('.submit-card');
+const overlayPopup = document.querySelectorAll('.popup');
 
 const createCard = (name, link) => {
   const copyElementTemplate = template.content
@@ -97,6 +98,26 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_open");
 };
 
+const arrOverlay = [...overlayPopup];
+arrOverlay.forEach((event) =>  {
+  const closePopupByClickOverlay = (event) => {
+    if ( event.target === event.currentTarget) {
+      closePopup(event.currentTarget);
+    }
+
+  };
+  event.addEventListener('click', closePopupByClickOverlay);
+  });
+
+
+window.onkeydown = function( event ) {
+  if ( event.keyCode == 27 ) {
+      arrOverlay.forEach((evt) => {
+        closePopup(evt);
+      });
+  }
+};
+
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfileEditing);
   profileNameInputFieldPopup.value = profileTitle.textContent;
@@ -108,3 +129,6 @@ popupCloseButton.addEventListener("click", () => closePopup(popupProfileEditing)
 popupProfileEditing.addEventListener("submit", submitEditProfileForm);
 popupImgCloseBtn.addEventListener("click", () => closePopup(popupWithEnlargedImage));
 popupAddingCards.addEventListener("submit", submitAddCardForm); //событе при нажатии на кнопку отправляется форма для создание новой карточки
+
+
+console.log()

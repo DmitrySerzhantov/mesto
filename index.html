@@ -44,9 +44,31 @@
     <div class="popup popup-edit-add">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" action="#" method="get" name="formPopup">
-          <input type="text" class="popup__input popup__input_text_name" value="" name="nameProfil" placeholder="Имя">
-          <input type="text" class="popup__input popup__input_text_job" value="" name="jobProfil" placeholder="Вид деятельности">
+        <form class="popup__form" action="#" method="get" name="formPopup" novalidate>
+          <input
+          id="input-name"
+          required
+          type="text"
+          minlength="2"
+          maxlength="40"
+          class="popup__input popup__input_text_name"
+          value=""
+          name="nameProfil"
+          placeholder="Имя"
+          >
+          <span id="input-name-error" class="popup__text-error"> </span>
+          <input
+          id="input-job"
+          required
+          type="text"
+          minlength="2"
+          maxlength="200"
+          class="popup__input popup__input_text_job"
+          value=""
+          name="jobProfil"
+          placeholder="Вид деятельности"
+          >
+          <span id="input-job-error" class="popup__text-error"> </span>
           <button type="submit" class="popup__button btn-save-profil" value="submit" name="submit">Сохранить</button>
           <button type="button" class="popup__close" value="close" name="close"></button>
         </form>
@@ -55,11 +77,28 @@
     <div class="popup popup-cards-add">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form submit-card" action="#" method="get" name="formPopup">
-          <input type="text" class="popup__input popup__input_text_name-card" value="" name="nameCards"
-            placeholder="Название">
-          <input type="text" class="popup__input popup__input_img_link" value="" name="linkImg"
-            placeholder="Ссылка на картинку">
+        <form class="popup__form submit-card" action="#" method="get" name="formPopup" id="1">
+          <input
+          required
+          minlength="2"
+          maxlength="30"
+          id="input-name-card"
+          type="text"
+          class="popup__input popup__input_text_name-card"
+          value="" name="nameCards"
+          placeholder="Название"
+            >
+            <span id="input-name-card-error" class="popup__text-error"> </span>
+          <input
+          required
+            id="input-link"
+            type="url"
+            class="popup__input popup__input_img_link"
+            value=""
+            name="linkImg"
+            placeholder="Ссылка на картинку"
+            >
+            <span id="input-link-error" class="popup__text-error"> </span>
           <button type="submit" class="btn-save-card popup__button" value="submit" name="submit">Создать</button>
           <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>
@@ -73,8 +112,11 @@
       </form>
     </div>
   </div>
+
   <script src="./js/constants.js"></script>
   <script src="./js/index.js"></script>
+  <script src="./js/validate.js"></script>
+
 </body>
 
 </html>
