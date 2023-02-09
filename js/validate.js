@@ -16,7 +16,6 @@ function enableValidation(config) {
   formlist.forEach((form) => {
     enableFormValidation(form, config);
     toggleButton(form, config);
-    formsValidity(form, config);
   });
 }
 
@@ -25,7 +24,11 @@ function enableFormValidation(form, config) {
   form.addEventListener("input", () => {
     toggleButton(form, config);
   });
-
+  form.addEventListener("reset", () => {
+    setTimeout(() => {
+      toggleButton(form, config);
+    }, 0);
+  });
   addInputLusteners(form, config);
   toggleButton(form, config);
 }

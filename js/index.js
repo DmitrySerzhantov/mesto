@@ -110,12 +110,10 @@ function closeByEscape(evt) {
   }
 }
 
-const formsValidity = (form, config) => {
-  buttonOpeningPopupEditingCards.addEventListener("click", () => {
-    openPopup(popupAddingCards);
-    toggleButton(form, config);
-  });
-};
+
+buttonOpeningPopupEditingCards.addEventListener("click", () => {
+  openPopup(popupAddingCards);
+});
 
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfileEditing);
