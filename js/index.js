@@ -14,11 +14,10 @@ const popupNameImg = popupWithEnlargedImage.querySelector( ".popup-img__name-img
 const popupImgCloseBtn = document.querySelector(".popup-img__close-btn"); //нашел кнопку закрытия попапа
 const cardContainer = document.querySelector(".cards"); //нашел контейнер кда буду вставлять html разметку то есть template,
 const template = document.querySelector("#element-card"); // нашел template в html,
-const inputTextNameCard = document.querySelector(".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
+const inputTextNameCard = document.querySelector( ".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
 const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
 const formCard = document.querySelector(".submit-card");
 const elementsOverlayPopup = document.querySelectorAll(".popup");
-
 
 const createCard = (name, link) => {
   const copyElementTemplate = template.content
@@ -65,19 +64,15 @@ initialCards.forEach((item) => {
 });
 
 const submitAddCardForm = (evt) => {
- evt.preventDefault();
+  evt.preventDefault();
   const cardData = {
     // присвоил новые значения из формы для новой карточкм
     name: inputTextNameCard.value,
     link: inputImgLink.value,
-
   };
-
   addCard(cardData);
   formCard.reset();
   closePopup(popupAddingCards);
-
-
 };
 
 function submitEditProfileForm(evt) {
@@ -85,7 +80,6 @@ function submitEditProfileForm(evt) {
   profileTitle.textContent = profileNameInputFieldPopup.value;
   profileSubtitle.textContent = fieldEnteringTypeActivityPopup.value;
   closePopup(popupProfileEditing);
-
 }
 
 const openPopup = (popup) => {
@@ -116,26 +110,24 @@ function closeByEscape(evt) {
   }
 }
 
-
-
-const formsValidity = (form, config ) => {
+const formsValidity = (form, config) => {
   buttonOpeningPopupEditingCards.addEventListener("click", () => {
     openPopup(popupAddingCards);
     toggleButton(form, config);
-
   });
-
-
 };
+
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfileEditing);
   profileNameInputFieldPopup.value = profileTitle.textContent;
   fieldEnteringTypeActivityPopup.value = profileSubtitle.textContent;
-
 });
 
-closeButtonAddCards.addEventListener("click", () =>  closePopup(popupAddingCards));
-popupCloseButton.addEventListener("click", () => closePopup(popupProfileEditing)
+closeButtonAddCards.addEventListener("click", () =>
+  closePopup(popupAddingCards)
+);
+popupCloseButton.addEventListener("click", () =>
+  closePopup(popupProfileEditing)
 );
 popupProfileEditing.addEventListener("submit", submitEditProfileForm);
 popupImgCloseBtn.addEventListener("click", () =>
