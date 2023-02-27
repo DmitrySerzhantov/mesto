@@ -34,8 +34,7 @@ const handlePopupImg = () => {
 
 // Создание карточек при запуске страници .
 initialCards.forEach((item) => {
-  const card = new Card(item, template, handlePopupImg);
-  const createCard = card.createCard();
+  const card = new Card(item, template, handlePopupImg).createCard();
 });
 
 // Создание карточки при добавлении из формы.
@@ -45,8 +44,7 @@ const submitAddCardForm = (evt) => {
     name: inputTextNameCard.value,
     link: inputImgLink.value,
   };
-  const card = new Card(cardData, template, handlePopupImg);
-  const createCard = card.createCard();
+  const card = new Card(cardData, template, handlePopupImg).createCard();
   formCard.reset();
   closePopup(popupAddingCards);
 };
