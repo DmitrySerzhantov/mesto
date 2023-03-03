@@ -1,7 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { initialCards } from "./constants.js";
-import { formValidationConfig } from "./validate.js";
+import { initialCards, formValidationConfig } from "./constants.js";
 
 const popupProfileEditing = document.querySelector(".popup-edit-add");
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -12,45 +11,50 @@ const profileNameInputFieldPopup = document.querySelector(".popup__input_text_na
 const fieldEnteringTypeActivityPopup = document.querySelector(".popup__input_text_job");
 const popupAddingCards = document.querySelector(".popup-cards-add");
 const buttonOpeningPopupEditingCards = document.querySelector(".profile__add-button");
-const closeButtonAddCards = document.querySelector(".popup__close-addcards");
+const buttonCloseAddCards = document.querySelector(".popup__close-addcards");
 const popupWithEnlargedImage = document.querySelector(".popup-img"); //попап с изображением
 const popupImgCloseBtn = document.querySelector(".popup-img__close-btn"); //нашел кнопку закрытия попапа
 const cardTemplate = document.querySelector("#element-card").content; // нашел template в html,
 const inputTextNameCard = document.querySelector(".popup__input_text_name-card"); //нашел поле формы для имени карточки что-бы получить значение
 const inputImgLink = document.querySelector(".popup__input_img_link"); //нашел поле формы для ссылки карточки что-бы получить значение
 const formCard = document.querySelector(".submit-card");
-const popupAllInHTML = document.querySelectorAll(".popup");
-const imgpopup = popupWithEnlargedImage.querySelector(".popup-img__image");
-const nameIMGpopup = popupWithEnlargedImage.querySelector(".popup-img__name-img");
-
+const popupFormAllInHTML = document.querySelectorAll(".popup__form");
+const imgPopup = popupWithEnlargedImage.querySelector(".popup-img__image");
+const nameImgPopup = popupWithEnlargedImage.querySelector(
+  ".popup-img__name-img"
+);
+const cardsContainer = document.querySelector(".cards");
+const allPopupHTML = document.querySelectorAll(".popup");
 // zoom Картинки.
-const handleOpenPopupImg  = (imgElementpopup) => {
-  imgpopup.src = imgElementpopup.src;
-  nameIMGpopup.textContent = imgElementpopup.alt;
-  imgpopup.alt = imgElementpopup.alt;
+const handleOpenPopupImg = (name, link) => {
+  imgPopup.src = link;
+  nameImgPopup.textContent = name;
+  imgPopup.alt = name;
   openPopup(popupWithEnlargedImage);
-  };
+};
 
-const validationForm = (validatedPopup) => {
-  const formValidator = new FormValidator(formValidationConfig, validatedPopup);
+const enableFormValidation = (validatedForm) => {
+  const formValidator = new FormValidator(formValidationConfig, validatedForm);
   formValidator.enableValidation();
-  validatedPopup.addEventListener("submit", function disableSubmit (event) {
+  validatedForm.addEventListener("submit", function disableSubmit(event) {
     event.preventDefault();
-  });}
-;
-popupAllInHTML.forEach((validatedPopup) => {
-  validationForm(validatedPopup);
- });
+  });
+};
+popupFormAllInHTML.forEach((validatedForm) => {
+  enableFormValidation(validatedForm);
+});
 
 const createCard = (cardData) => {
-  const cardInstance = new Card(cardData, cardTemplate, handleOpenPopupImg );
-  document.querySelector(".cards").prepend(cardInstance.renderCard());
-}
+  const cardInstance = new Card(cardData, cardTemplate, handleOpenPopupImg);
+  return cardInstance.renderCard();
+};
 
+const handleAddsСards = (cardData) => {
+  cardsContainer.prepend(createCard(cardData));
+};
 
-// Создание карточек при запуске страници .
 initialCards.forEach((cardData) => {
-  createCard(cardData)
+  handleAddsСards(cardData);
 });
 
 // Создание карточки при добавлении из формы.
@@ -60,7 +64,7 @@ const handleCardFormSubmit = (evt) => {
     name: inputTextNameCard.value,
     link: inputImgLink.value,
   };
-  createCard(cardDataNewCard);
+  cardsContainer.prepend(createCard(cardDataNewCard));
   formCard.reset();
   closePopup(popupAddingCards);
 };
@@ -82,7 +86,7 @@ const closePopup = (popup) => {
   document.removeEventListener("keydown", closeByEscape);
 };
 
-const arrOverlay = [...popupAllInHTML];
+const arrOverlay = [...allPopupHTML];
 
 arrOverlay.forEach((overlay) => {
   const closePopupByClickOverlay = (event) => {
@@ -100,20 +104,19 @@ function closeByEscape(evt) {
   }
 }
 
-const openingPopupProfileEditing = () => {
+const openProfilePopup = () => {
   openPopup(popupProfileEditing);
   profileNameInputFieldPopup.value = profileTitle.textContent;
   fieldEnteringTypeActivityPopup.value = profileSubtitle.textContent;
-}
-
+};
 
 buttonOpeningPopupEditingCards.addEventListener("click", () => {
   openPopup(popupAddingCards);
 });
 
-profileEditButton.addEventListener("click", openingPopupProfileEditing);
+profileEditButton.addEventListener("click", openProfilePopup);
 
-closeButtonAddCards.addEventListener("click", () =>
+buttonCloseAddCards.addEventListener("click", () =>
   closePopup(popupAddingCards)
 );
 buttonCloseProfilePopup.addEventListener("click", () =>
