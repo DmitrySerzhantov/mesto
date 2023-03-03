@@ -24,7 +24,7 @@ export class Card {
   };
 
   _handleLikeCard() {
-    this._likeButton.classList.toggle("cards__like_color_black");
+    this._buttonLike.classList.toggle("cards__like_color_black");
   }
 
   _increasesImg() {
@@ -32,9 +32,9 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._likeButton = this._copyElementCard.querySelector(".cards__like");
+    this._buttonLike = this._copyElementCard.querySelector(".cards__like");
 
-    this._likeButton.addEventListener("click", () => this._handleLikeCard());
+    this._buttonLike.addEventListener("click", () => this._handleLikeCard());
     this._copyElementCard
       .querySelector(".cards__trash")
       .addEventListener("click", this._removeItem);
