@@ -11,23 +11,23 @@ export class FormValidator {
 
   enableValidation() {
     this._enableFormValidation();
-    this._enableToggleButton();
+    this._toggleSubmitButton();
   }
 
   _enableFormValidation() {
     this._elementForm.addEventListener("input", () => {
-      this._enableToggleButton();
+      this._toggleSubmitButton();
     });
 
     this._elementForm.addEventListener("reset", () => {
       setTimeout(() => {
-        this._enableToggleButton();
+        this._toggleSubmitButton();
       }, 0);
     });
     this._addInputListeners();
   }
 
-  _enableToggleButton() {
+  _toggleSubmitButton() {
     this._isFormValid = this._elementForm.checkValidity();
     this._elementButton.disabled = !this._isFormValid;
     this._elementButton.classList.toggle(

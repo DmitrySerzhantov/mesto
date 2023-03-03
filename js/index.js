@@ -49,12 +49,12 @@ const createCard = (cardData) => {
   return cardInstance.renderCard();
 };
 
-const handleAddsСards = (cardData) => {
+const handleAddCard = (cardData) => {
   cardsContainer.prepend(createCard(cardData));
 };
 
 initialCards.forEach((cardData) => {
-  handleAddsСards(cardData);
+  handleAddCard(cardData);
 });
 
 // Создание карточки при добавлении из формы.
