@@ -3,6 +3,8 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards, formValidationConfig } from "./constants.js";
 import { Section } from './Section';
+import { Popup } from './Popup';
+
 const popupProfileEditing = document.querySelector(".popup-edit-add");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const buttonCloseProfilePopup = document.querySelector(".popup__close");
@@ -12,7 +14,7 @@ const profileNameInputFieldPopup = document.querySelector(".popup__input_text_na
 const fieldEnteringTypeActivityPopup = document.querySelector(".popup__input_text_job");
 const popupAddingCards = document.querySelector(".popup-cards-add");
 const buttonOpeningPopupEditingCards = document.querySelector(".profile__add-button");
-const buttonCloseAddCards = document.querySelector(".popup__close-addcards");
+const buttonClosePopupCards = document.querySelector(".popup__close-addcards");
 const popupWithEnlargedImage = document.querySelector(".popup-img"); //попап с изображением
 const popupImgCloseBtn = document.querySelector(".popup-img__close-btn"); //нашел кнопку закрытия попапа
 const cardTemplate = document.querySelector("#element-card").content; // нашел template в html,
@@ -74,6 +76,7 @@ const handleCardFormSubmit = (evt) => {
   closePopup(popupAddingCards);
 };
 
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInputFieldPopup.value;
@@ -81,33 +84,16 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupProfileEditing);
 }
 
-const openPopup = (popup) => {
-  popup.classList.add("popup_open");
-  document.addEventListener("keydown", closeByEscape);
-};
+//const arrOverlay = [...allPopupHTML];
 
-const closePopup = (popup) => {
-  popup.classList.remove("popup_open");
-  document.removeEventListener("keydown", closeByEscape);
-};
-
-const arrOverlay = [...allPopupHTML];
-
-arrOverlay.forEach((overlay) => {
-  const closePopupByClickOverlay = (event) => {
-    if (event.target === event.currentTarget) {
-      closePopup(event.currentTarget);
-    }
-  };
-  overlay.addEventListener("click", closePopupByClickOverlay);
-});
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_open");
-    closePopup(openedPopup);
-  }
-}
+//arrOverlay.forEach((overlay) => {
+ /// const closePopupByClickOverlay = (event) => {
+ ///   if (event.target === event.currentTarget) {
+ ///     closePopup(event.currentTarget);
+ ///   }
+ /// };
+ /// overlay.addEventListener("click", closePopupByClickOverlay);
+//});
 
 const openProfilePopup = () => {
   openPopup(popupProfileEditing);
@@ -115,20 +101,23 @@ const openProfilePopup = () => {
   fieldEnteringTypeActivityPopup.value = profileSubtitle.textContent;
 };
 
-buttonOpeningPopupEditingCards.addEventListener("click", () => {
-  openPopup(popupAddingCards);
-});
+
+const handlePopup = (selectorPopup) => {
+  const popup = new Popup (selectorPopup);
+  popup.open();
+  popup.setEventListeners(buttonClosePopupCards);
+};
+
+buttonOpeningPopupEditingCards.addEventListener("click", () => { handlePopup(popupAddingCards) });
+
+
+popupImgCloseBtn.addEventListener("click", () => closePopup(popupWithEnlargedImage));
 
 profileEditButton.addEventListener("click", openProfilePopup);
 
-buttonCloseAddCards.addEventListener("click", () =>
-  closePopup(popupAddingCards)
-);
-buttonCloseProfilePopup.addEventListener("click", () =>
-  closePopup(popupProfileEditing)
+
+buttonCloseProfilePopup.addEventListener("click", () => closePopup(popupProfileEditing)
 );
 popupProfileEditing.addEventListener("submit", handleProfileFormSubmit);
-popupImgCloseBtn.addEventListener("click", () =>
-  closePopup(popupWithEnlargedImage)
-);
+
 popupAddingCards.addEventListener("submit", handleCardFormSubmit); //событе при нажатии на кнопку отправляется форма для создание новой карточки
