@@ -2,7 +2,7 @@ import '../pages/index.css'
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards, formValidationConfig } from "./constants.js";
-
+import { Section } from './Section';
 const popupProfileEditing = document.querySelector(".popup-edit-add");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const buttonCloseProfilePopup = document.querySelector(".popup__close");
@@ -21,9 +21,7 @@ const inputImgLink = document.querySelector(".popup__input_img_link"); //наш�
 const formCard = document.querySelector(".submit-card");
 const popupFormAllInHTML = document.querySelectorAll(".popup__form");
 const imgPopup = popupWithEnlargedImage.querySelector(".popup-img__image");
-const nameImgPopup = popupWithEnlargedImage.querySelector(
-  ".popup-img__name-img"
-);
+const nameImgPopup = popupWithEnlargedImage.querySelector(".popup-img__name-img");
 const cardsContainer = document.querySelector(".cards");
 const allPopupHTML = document.querySelectorAll(".popup");
 // zoom Картинки.
@@ -50,8 +48,14 @@ const createCard = (cardData) => {
   return cardInstance.renderCard();
 };
 
+const renderer = (container, element) => {
+  container.prepend(element);
+  };
+
 const handleAddCard = (cardData) => {
-  cardsContainer.prepend(createCard(cardData));
+const arrayCard = createCard(cardData);
+const sectionCard = new Section( {items: arrayCard, renderer: renderer}, cardsContainer )
+return sectionCard.rendererAllElements();
 };
 
 initialCards.forEach((cardData) => {

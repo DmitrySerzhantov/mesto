@@ -11,7 +11,7 @@ module.exports = {
     filename: 'index.[hash].js',
     path: path.resolve(__dirname, 'build'),
   },
-  mode: 'development',//production, development
+  mode: 'development',
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'build'),
