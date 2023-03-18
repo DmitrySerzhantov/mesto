@@ -1,9 +1,9 @@
 export class Card {
-  constructor(cardData, templateElementCard, handleImageClick) {
+  constructor(cardData, templateElementCard, handleCardClick) {
     this._cardName = cardData.name;
     this._cardLink = cardData.link;
     this._templateElementCard = templateElementCard;
-    this._handleImageClick = handleImageClick;
+    this._handleCardClick = handleCardClick;
   }
 
   renderCard() {
@@ -28,7 +28,10 @@ export class Card {
   }
 
   _increasesImg() {
-    this._handleImageClick(this._imgElementCard.alt, this._imgElementCard.src);
+    this._handleCardClick({
+      name: this._imgElementCard.alt,
+      link: this._imgElementCard.src,
+    });
   }
 
   _setEventListeners() {
