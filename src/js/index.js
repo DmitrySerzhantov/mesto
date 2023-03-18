@@ -47,34 +47,27 @@ const createCard = (cardData) => {
   const cardInstance = new Card(cardData, cardTemplate, handleCardClick);
   return cardInstance.renderCard();
 };
+
 // Создание карточки при добавлении из формы.
 const handleCardFormSubmit = (element) => {
   const newCard = {
     link: element.linkImg,
     name: element.nameCards,
   };
-  handleAddCard(newCard);
+  sectionCard.addItem(createCard(newCard));
 };
 
-const renderer = (container, element) => {
-  container.prepend(element);
+const renderer = (element) => {
+  sectionCard.addItem(createCard(element));
 };
 
-const handleAddCard = (cardData) => {
-  const arrayCard = createCard(cardData);
-  const sectionCard = new Section(
-    { items: arrayCard, renderer: renderer },
-    cardsContainer
-  );
-  return sectionCard.rendererAllElements();
-};
+const sectionCard = new Section(
+  { items: initialCards, renderer: renderer },
+  cardsContainer
+);
+sectionCard.rendererAllElements();
 
-initialCards.forEach((cardData) => {
-  handleAddCard(cardData);
-});
-
-//////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////
 const handleProfileFormSubmit = (element) => {
   const profileData = {
     info: element.jobProfil,
