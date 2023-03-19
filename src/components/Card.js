@@ -10,6 +10,7 @@ export class Card {
     this._copyElementCard =
       this._templateElementCard.cloneNode(true).children[0]; //Клонирую html элемент li
     this._imgElementCard = this._copyElementCard.querySelector(".cards__img");
+    this._buttonLike = this._copyElementCard.querySelector(".cards__like");
     this._imgElementCard.src = this._cardLink; //присваивает значение элемента link для src.
     this._copyElementCard.querySelector(".cards__text").textContent =
       this._cardName;
@@ -35,8 +36,6 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._buttonLike = this._copyElementCard.querySelector(".cards__like");
-
     this._buttonLike.addEventListener("click", () => this._handleLikeCard());
     this._copyElementCard
       .querySelector(".cards__trash")
