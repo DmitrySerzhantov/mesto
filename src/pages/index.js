@@ -1,30 +1,22 @@
-import "../pages/index.css";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from "./Section";
-import { PopupWithImage } from "./PopupWithImage";
-import { PopupWithForm } from "./PopupWithForm";
-import { UserInfo } from "./UserInfo";
+import "./index.css";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section";
+import { PopupWithImage } from "../components/PopupWithImage";
+import { PopupWithForm } from "../components/PopupWithForm";
+import { UserInfo } from "../components/UserInfo";
 import {
   formValidationConfig,
   initialCards,
-  fieldEnteringTypeActivityPopup,
-  popupProfileEditing,
   profileEditButton,
-  buttonCloseProfilePopup,
   profileTitle,
   profileSubtitle,
-  profileNameInputFieldPopup,
   buttonOpeningPopupEditingCards,
-  popupAddingCards,
-  buttonClosePopupCards,
-  popupWithEnlargedImage,
-  popupImgCloseBtn,
   cardTemplate,
   popupFormAllInHTML,
   cardsContainer,
-} from "./constants.js";
-import { Popup } from "./Popup";
+} from "../utils/constants.js";
+import { Popup } from "../components/Popup";
 
 const enableFormValidation = (validatedForm) => {
   const formValidator = new FormValidator(formValidationConfig, validatedForm);
@@ -33,14 +25,12 @@ const enableFormValidation = (validatedForm) => {
     event.preventDefault();
   });
 };
-popupFormAllInHTML.forEach((validatedForm) => {
-  enableFormValidation(validatedForm);
-});
+popupFormAllInHTML.forEach(enableFormValidation);
 
+const popupWithImage = new PopupWithImage(".popup-img");
+popupWithImage.setEventListeners();
 const handleCardClick = ({ name, link }) => {
-  const popupWithImage = new PopupWithImage(name, link, popupWithEnlargedImage);
-  popupWithImage.open();
-  popupWithImage.setEventListeners(popupImgCloseBtn);
+  popupWithImage.open(name, link);
 };
 
 const createCard = (cardData) => {
@@ -70,41 +60,39 @@ sectionCard.rendererAllElements();
 ///////////////////////////////////////////////////////////////////////////
 const handleProfileFormSubmit = (element) => {
   const profileData = {
-    info: element.jobProfil,
-    name: element.nameProfil,
+    info: element.info,
+    name: element.name,
   };
   handeleUserInfo(profileData);
 };
 
-const hendelInputValues = (values) => {
-  profileNameInputFieldPopup.value = values.name;
-  fieldEnteringTypeActivityPopup.value = values.info;
-};
 const userInfo = new UserInfo({ name: profileTitle, info: profileSubtitle });
 const handeleUserInfo = (profileData) => {
   userInfo.setUserInfo(profileData.name, profileData.info);
 };
-
-const handlePopupProfail = (selectorPopup) => {
-  const popupProfile = new PopupWithForm(
-    selectorPopup,
-    handleProfileFormSubmit
-  );
+const popupProfile = new PopupWithForm(
+  ".popup-edit-add",
+  handleProfileFormSubmit
+);
+popupProfile.setEventListeners();
+const handlePopupProfail = () => {
   popupProfile.open();
-  popupProfile.setEventListeners(buttonCloseProfilePopup);
 };
 
 profileEditButton.addEventListener("click", () => {
-  handlePopupProfail(popupProfileEditing);
-  hendelInputValues(userInfo.getUserInfo());
+  handlePopupProfail();
+  popupProfile.setInputValues(userInfo.getUserInfo());
 });
 //////////////////////////////////////////////////////////////////////
-const handlePopupAddCard = (selectorPopup) => {
-  const popupAddCard = new PopupWithForm(selectorPopup, handleCardFormSubmit);
+const popupAddCard = new PopupWithForm(
+  ".popup-cards-add",
+  handleCardFormSubmit
+);
+popupAddCard.setEventListeners();
+const handlePopupAddCard = () => {
   popupAddCard.open();
-  popupAddCard.setEventListeners(buttonClosePopupCards);
 };
 
 buttonOpeningPopupEditingCards.addEventListener("click", () => {
-  handlePopupAddCard(popupAddingCards);
+  handlePopupAddCard();
 });

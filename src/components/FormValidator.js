@@ -3,10 +3,10 @@ export class FormValidator {
     this._formSelector = params.formSelector;
     this._inputSelector = params.inputSelector;
     this._errorClass = params.errorClass;
-    this._buttonSelektor = params.buttonSelektor;
+    this._buttonSelector = params.buttonSelector;
     this._disabledClass = params.disabledClass;
     this._elementForm = elementForm;
-    this._elementButton = this._elementForm.querySelector(this._buttonSelektor);
+    this._elementButton = this._elementForm.querySelector(this._buttonSelector);
   }
 
   enableValidation() {
