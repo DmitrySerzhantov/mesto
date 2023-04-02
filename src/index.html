@@ -16,11 +16,13 @@
     </header>
     <main class="content">
       <section class="profile" aria-label="секция профиля страницы">
-        <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Аватар профиля">
+        <button class="profile__container-avatar">
+          <img class="profile__avatar" src="" alt="Аватар профиля">
+        </button>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто </h1>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button type="button" class="profile__add-button" aria-label="Кнопка добавления контента"></button>
       </section>
@@ -32,7 +34,10 @@
           <button class="cards__trash" type="button" aria-label="удалить карточку"></button>
           <div class="cards__footer">
             <h2 class="cards__text"></h2>
-            <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
+            <div class="cards__container-like">
+              <button class="cards__like" type="button" aria-label="лайк для карточки"></button>
+              <p class="cards__like-counter"></p>
+            </div>
           </div>
         </li>
       </template>
@@ -66,6 +71,27 @@
             placeholder="Ссылка на картинку">
           <span id="input-link-error" class="popup__text-error"> </span>
           <button type="submit" class="btn-save-card popup__button" value="submit" name="submit">Создать</button>
+          <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup-delete-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверенны?</h2>
+        <form class="popup__form" action="#" method="get" name="formPopup" novalidate id="0">
+          <button type="submit" class="popup__button button-delete-card" value="submit" name="submit">Да</button>
+          <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup-avatar-update">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form submit-card" action="#" method="get" name="formPopup" id="1">
+          <input required id="input-link" type="url" class="popup__input popup__input_img_link" value="" name="linkImg"
+            placeholder="Ссылка на картинку">
+          <span id="input-link-error" class="popup__text-error"> </span>
+          <button type="submit" class="save-new-avatar popup__button" value="submit" name="submit">Сохранить</button>
           <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>
       </div>
