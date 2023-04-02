@@ -17,7 +17,7 @@
     <main class="content">
       <section class="profile" aria-label="секция профиля страницы">
         <button class="profile__container-avatar">
-          <img class="profile__avatar" src="" alt="Аватар профиля">
+          <img class="profile__avatar" src="#" alt="Аватар профиля">
         </button>
         <div class="profile__info">
           <h1 class="profile__title"></h1>
@@ -78,7 +78,7 @@
     <div class="popup popup-delete-card">
       <div class="popup__container">
         <h2 class="popup__title">Вы уверенны?</h2>
-        <form class="popup__form" action="#" method="get" name="formPopup" novalidate id="0">
+        <form class="popup__form" action="#" method="get" name="formPopup" novalidate id="2">
           <button type="submit" class="popup__button button-delete-card" value="submit" name="submit">Да</button>
           <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>
@@ -87,10 +87,10 @@
     <div class="popup popup-avatar-update">
       <div class="popup__container">
         <h2 class="popup__title">Обновить аватар</h2>
-        <form class="popup__form submit-card" action="#" method="get" name="formPopup" id="1">
-          <input required id="input-link" type="url" class="popup__input popup__input_img_link" value="" name="linkImg"
+        <form class="popup__form submit-card" action="#" method="get" name="formPopup" id="3">
+          <input required id="input-avatar" type="url" class="popup__input popup__input_img_link" value="" name="linkImg"
             placeholder="Ссылка на картинку">
-          <span id="input-link-error" class="popup__text-error"> </span>
+          <span id="input-avatar-error" class="popup__text-error"> </span>
           <button type="submit" class="save-new-avatar popup__button" value="submit" name="submit">Сохранить</button>
           <button type="button" class="popup__close popup__close-addcards" value="close" name="close"></button>
         </form>
