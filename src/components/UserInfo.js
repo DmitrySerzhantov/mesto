@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({ name, info }) {
+  constructor({ name, info, avatar }) {
     this._name = name;
     this._info = info;
+    this._avatar = avatar;
   }
 
   getUserInfo() {
@@ -16,5 +17,8 @@ export class UserInfo {
   setUserInfo(nameInput, infoInput) {
     this._name.textContent = nameInput;
     this._info.textContent = infoInput;
+  }
+  setUserAvatar(avatarSrc) {
+    this._avatar.src = avatarSrc;
   }
 }

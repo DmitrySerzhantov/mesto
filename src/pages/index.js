@@ -32,11 +32,10 @@ const profileInfo = document.querySelector(".profile__info");
 function handleDataUserProfile() {
   const userProfile = api.getUserProfile();
   userProfile
-    .then((result) => {
-      profileTitle.textContent = result.name;
-      profileSubtitle.textContent = result.about;
-      profileAvatar.src = result.avatar;
-      profileInfo.id = result._id;
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about);
+      userInfo.setUserAvatar(res.avatar);
+      profileInfo.id = res._id;
     })
     .catch((err) => {
       console.log(err);
@@ -45,9 +44,7 @@ function handleDataUserProfile() {
 
 handleDataUserProfile();
 
-//console.log(profileInfo.id);
-
-function handelelickCard(idCard) {
+function handleLikeCard(idCard) {
   api
     .likeCard(idCard)
     .then((res) => {
@@ -61,7 +58,7 @@ function handelelickCard(idCard) {
     });
 }
 
-function handeledislikeCard(idCard) {
+function handleDislikeCard(idCard) {
   api
     .deleteLikeCard(idCard)
     .then((res) => {
@@ -83,7 +80,7 @@ const handleAvatarFormSubmit = (dataItem) => {
   api
     .updateAvatar({ avatar: dataItem.linkImg })
     .then((res) => {
-      profileAvatar.src = res.avatar;
+      userInfo.setUserAvatar(res.avatar);
       popupEditAvatar.close();
     })
     .catch((err) => {
@@ -144,9 +141,11 @@ const popupDeleteCard = new PopupWithConfirmation(
   ".popup-delete-card",
   hendlePopupDelete
 );
+
+popupDeleteCard.setEventListeners();
 const handleButtonDelete = (id, element) => {
   popupDeleteCard.open();
-  popupDeleteCard.setEventListeners(id, element);
+  popupDeleteCard.setDataItem(id, element);
 };
 
 const createCard = (cardData) => {
@@ -156,8 +155,8 @@ const createCard = (cardData) => {
     profileInfo.id,
     handleCardClick,
     handleButtonDelete,
-    handelelickCard,
-    handeledislikeCard
+    handleLikeCard,
+    handleDislikeCard
   );
   return cardInstance.renderCard();
 };
@@ -170,7 +169,9 @@ cards
       { items: result, renderer: renderer },
       cardsContainer
     );
-    sectionCard.rendererAllElements();
+    Promise.all(result).then(() => {
+      sectionCard.rendererAllElements();
+    });
   })
   .catch((err) => {
     console.log(err);
@@ -185,16 +186,13 @@ const renderer = (itemData) => {
 const userInfo = new UserInfo({
   name: profileTitle,
   info: profileSubtitle,
+  avatar: profileAvatar,
 });
 const handleProfileFormSubmit = (profileData) => {
-  const updatedUserProfile = api
-    .setUserProfile({
-      name: profileData.name,
-      about: profileData.info,
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const updatedUserProfile = api.setUserProfile({
+    name: profileData.name,
+    about: profileData.info,
+  });
 
   updatedUserProfile
     .then((res) => {
