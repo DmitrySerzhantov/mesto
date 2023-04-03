@@ -8,12 +8,17 @@ export class Api {
     return fetch(this._url + "cards", {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._checkStatus(res);
     });
   }
+
+  _checkStatus(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   setInitialNewCard(data) {
     return fetch(this._url + "cards", {
       method: "POST",
@@ -23,7 +28,7 @@ export class Api {
         link: data.link,
       }),
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
 
@@ -31,7 +36,7 @@ export class Api {
     return fetch(this._url + "users/me", {
       headers: this._headers,
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
   setUserProfile(data) {
@@ -43,7 +48,7 @@ export class Api {
         about: data.about,
       }),
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
   deleteCard(id) {
@@ -51,7 +56,7 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
 
@@ -60,7 +65,7 @@ export class Api {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
   deleteLikeCard(id) {
@@ -68,18 +73,18 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
-  updatesAvatar(data) {
+  updateAvatar(data) {
     return fetch(this._url + "users/me/avatar", {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar,
       }),
     }).then((res) => {
-      return res.json();
+      return this._checkStatus(res);
     });
   }
 }

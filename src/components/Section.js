@@ -1,19 +1,16 @@
 export class Section {
-  constructor({ renderer }, container, api) {
-    this._сontainer = container;
+  constructor({ items, renderer }, container) {
+    this._container = container;
     this._renderer = renderer;
-    this._api = api;
+    this._items = items;
   }
-
   rendererAllElements() {
-    const cards = this._api.getInitialCards();
-    cards.then((result) => {
-      result.forEach((itemData) => {
-        this._renderer({ itemData: itemData });
-      });
+    this._items.reverse().forEach((itemData) => {
+      this._renderer(itemData);
     });
   }
+
   addItem(element) {
-    this._сontainer.prepend(element);
+    this._container.prepend(element);
   }
 }
