@@ -8,10 +8,14 @@ export class PopupWithConfirmation extends Popup {
     this._buttonPopup = this._popup.querySelector(".popup__button");
   }
 
-  setEventListeners(id, element) {
+  setEventListeners() {
     super.setEventListeners();
     this._formPopup.addEventListener("submit", () => {
-      this._hendlePopupDelete(id, element);
+      this._hendlePopupDelete(this.id, this.element);
     });
+  }
+  setDataItem(id, element) {
+    this.id = id;
+    this.element = element;
   }
 }
