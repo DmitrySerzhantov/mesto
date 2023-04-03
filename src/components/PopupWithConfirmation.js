@@ -1,16 +1,17 @@
 import { Popup } from "./Popup";
 
 export class PopupWithConfirmation extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, hendlePopupDelete) {
     super(popupSelector);
+    this._formPopup = this._popup.querySelector(".popup__form");
+    this._hendlePopupDelete = hendlePopupDelete;
+    this._buttonPopup = this._popup.querySelector(".popup__button");
   }
 
-  open() {
-    super.open();
-  }
-
-  setEventListeners() {
+  setEventListeners(id, element) {
     super.setEventListeners();
-    this.close();
+    this._formPopup.addEventListener("submit", () => {
+      this._hendlePopupDelete(id, element);
+    });
   }
 }

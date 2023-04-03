@@ -21,3 +21,4 @@ export const profileAvatar = document.querySelector(".profile__avatar");
 export const buttonEditAvatar = document.querySelector(
   ".profile__container-avatar"
 );
+
