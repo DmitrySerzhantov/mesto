@@ -29,20 +29,6 @@ const api = new Api({
   },
 });
 const profileInfo = document.querySelector(".profile__info");
-function handleDataUserProfile() {
-  const userProfile = api.getUserProfile();
-  userProfile
-    .then((res) => {
-      userInfo.setUserInfo(res.name, res.about);
-      userInfo.setUserAvatar(res.avatar);
-      profileInfo.id = res._id;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-handleDataUserProfile();
 
 function handleLikeCard(idCard) {
   api
@@ -161,25 +147,32 @@ const createCard = (cardData) => {
   return cardInstance.renderCard();
 };
 
-const cards = api.getInitialCards();
+const renderer = (itemData) => {
+  sectionCard.addItem(createCard(itemData));
+};
 
-cards
-  .then((result) => {
-    sectionCard = new Section(
-      { items: result, renderer: renderer },
-      cardsContainer
-    );
-    Promise.all(result).then(() => {
-      sectionCard.rendererAllElements();
-    });
+function setUserInfoInitial(data) {
+  userInfo.setUserInfo({ name: data.name, about: data.about });
+  userInfo.setUserAvatar(data.avatar);
+  profileInfo.id = data._id;
+}
+
+function renderInitialCards(data) {
+  sectionCard = new Section(
+    { items: data, renderer: renderer },
+    cardsContainer
+  );
+  sectionCard.rendererAllElements();
+}
+
+Promise.all([api.getUserProfile(), api.getInitialCards()])
+  .then((res) => {
+    setUserInfoInitial(res[0]);
+    renderInitialCards(res[1]);
   })
   .catch((err) => {
     console.log(err);
   });
-
-const renderer = (itemData) => {
-  sectionCard.addItem(createCard(itemData));
-};
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -196,7 +189,7 @@ const handleProfileFormSubmit = (profileData) => {
 
   updatedUserProfile
     .then((res) => {
-      userInfo.setUserInfo(res.name, res.about);
+      userInfo.setUserInfo({ name: res.name, about: res.about });
       popupProfile.close();
     })
     .catch((err) => {
